@@ -1,37 +1,33 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Extension",
-  "description": "Enable focus mode on Chrome's official Extensions and Chrome Web Store documentation.",
-  "version": "1.0",
+  "name": "Highlight Text",
+  "description": "Highlight Text on webpage Chrome Extension.",
+  "version": "1.0.0",
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
     "48": "images/icon-48.png",
     "128": "images/icon-128.png"
   },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
+    "action": {
     "default_icon": {
       "16": "images/icon-16.png",
       "32": "images/icon-32.png",
       "48": "images/icon-48.png",
       "128": "images/icon-128.png"
-    },
-    "default_popup": "index.html"
+    }
   },
-  "permissions": ["activeTab", "scripting", "tabs"],
-
+  "permissions": ["tabs"],
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
-      "matches": [
-        "https://en.wikipedia.org/wiki/*"
-        
+      "matches": ["<all_urls>"],
+      "js":  [
+        "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
+        "highlighter.js",
+        "content.js"
       ]
+
     }
   ]
-
 }
  
