@@ -1,14 +1,19 @@
+//on install run this event
 chrome.runtime.onInstalled.addListener(() => {
     chrome.action.setBadgeText({
       text: "OFF",
     });
   });
 
-  const extensions = 'https://developer.chrome.com/docs/extensions'
-const webstore = 'https://developer.chrome.com/docs/webstore'
+//store website url 
+chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+  let url = tabs[0].url;
+  // use `url` here inside the callback because it's asynchronous!
+});
 
+//on click run our eventlistener
 chrome.action.onClicked.addListener(async (tab) => {
-  if (tab.url.startsWith(extensions) || tab.url.startsWith(webstore)) {
+  if (url) {
     // Retrieve the action badge to check if the extension is 'ON' or 'OFF'
     const prevState = await chrome.action.getBadgeText({ tabId: tab.id });
     // Next state will always be the opposite
